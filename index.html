@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="车厘子蛋糕机器人 A 股量化研究平台项目展示" />
+    <title>车厘子蛋糕机器人 | A 股量化研究平台</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="返回项目首页">
+        <span class="brand-mark" aria-hidden="true">CK</span>
+        <span>
+          <strong>车厘子蛋糕机器人</strong>
+          <small>A 股量化研究平台</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="页面导航">
+        <a href="#modules">功能模块</a>
+        <a href="#technology">技术栈</a>
+        <a href="#architecture">架构链路</a>
+        <a class="nav-button" href="README.md">README</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero page-width">
+        <div class="hero-copy">
+          <p class="eyebrow">PROJECT SHOWCASE / REAL PRODUCT</p>
+          <h1>把行情、研究、验证<br /><span>放进一条可回看的工作流。</span></h1>
+          <p class="hero-lead">
+            一个面向 A 股日常研究的全栈量化平台：从实时行情、指标和市场复盘，到策略筛选、回测、资讯、估值与 AI 辅助研判，所有模块围绕真实研究过程连接起来。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#modules">查看功能模块 <span aria-hidden="true">→</span></a>
+            <a class="button button-secondary" href="docs/功能说明.md">阅读完整说明</a>
+          </div>
+          <p class="hero-note">这是独立的项目展示仓库，不包含业务源码、数据库、密钥或生产配置。</p>
+        </div>
+        <div class="hero-board" aria-label="平台研究流程概览">
+          <div class="board-topline">
+            <span>研究流程</span>
+            <span class="status-dot"><i></i>事实优先</span>
+          </div>
+          <div class="board-question">
+            <span class="question-icon">?</span>
+            <div>
+              <strong>今天应该先看什么？</strong>
+              <p>从市场状态进入单股研究，再用历史窗口验证判断。</p>
+            </div>
+          </div>
+          <div class="board-flow">
+            <div class="flow-step active"><b>01</b><span>发现</span><small>工作台 / 排行榜</small></div>
+            <div class="flow-arrow" aria-hidden="true">→</div>
+            <div class="flow-step"><b>02</b><span>研究</span><small>指标 / 资讯 / 估值</small></div>
+            <div class="flow-arrow" aria-hidden="true">→</div>
+            <div class="flow-step"><b>03</b><span>验证</span><small>筛选 / 回测 / 质量</small></div>
+          </div>
+          <div class="board-footer">
+            <span>数据来源、事实日期和缺失状态保留在结果旁边</span>
+            <span class="board-chip">可追溯</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-strip page-width" aria-label="项目概览">
+        <div><strong>22</strong><span>产品入口</span></div>
+        <div><strong>81</strong><span>截图预留位</span></div>
+        <div><strong>4</strong><span>研究阶段</span></div>
+        <div><strong>2</strong><span>实时与历史数据路径</span></div>
+        <p>面向真实使用的产品，不为展示单独改造主项目。</p>
+      </section>
+
+      <section class="section page-width workflow-section">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow">HOW IT FITS TOGETHER</p>
+            <h2>从发现问题，到验证判断</h2>
+          </div>
+          <p>每个页面都有明确的输入、处理和输出，用户可以从一个结果继续下钻到另一个研究环节。</p>
+        </div>
+        <div class="workflow-grid">
+          <article class="workflow-item">
+            <span class="step-number">01</span>
+            <h3>发现</h3>
+            <p>工作台、自选、板块、指数和排行榜帮助用户确认市场状态，找到值得继续看的标的。</p>
+          </article>
+          <article class="workflow-item">
+            <span class="step-number">02</span>
+            <h3>研究</h3>
+            <p>指标、复盘、估值、资讯和 AI 将一只股票或一个主题拆成趋势、结构、资金和风险证据。</p>
+          </article>
+          <article class="workflow-item">
+            <span class="step-number">03</span>
+            <h3>验证</h3>
+            <p>策略选股、回测和信号质量统计把研究想法放进明确的日期窗口，查看它是否可重复。</p>
+          </article>
+          <article class="workflow-item">
+            <span class="step-number">04</span>
+            <h3>回看</h3>
+            <p>模拟交易、研究记录、来源时间和数据状态让结论可以回到原始事实，而不是只留下一个分数。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section modules-section" id="modules">
+        <div class="page-width">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow">PRODUCT SURFACE</p>
+              <h2>22 个产品入口，层层展开</h2>
+            </div>
+            <p>按真实侧边栏拆分入口；点击后继续查看页面标签、区域、子功能、使用方式、实现说明和截图位置。</p>
+          </div>
+          <div class="module-layout">
+            <aside class="module-sidebar" aria-label="模块筛选">
+              <div class="search-box">
+                <label for="moduleSearch">搜索模块或功能</label>
+                <div class="search-input-wrap">
+                  <span aria-hidden="true">⌕</span>
+                  <input id="moduleSearch" type="search" placeholder="例如：回测、AI、PEG" autocomplete="off" />
+                </div>
+              </div>
+              <div class="filter-group" role="group" aria-label="按类别筛选">
+                <button class="filter-button active" data-filter="all" type="button">全部入口 <span>22</span></button>
+                <button class="filter-button" data-filter="core" type="button">核心工作台 <span>2</span></button>
+                <button class="filter-button" data-filter="research" type="button">研究分析 <span>7</span></button>
+                <button class="filter-button" data-filter="value" type="button">价值投资 <span>2</span></button>
+                <button class="filter-button" data-filter="information" type="button">资讯研报 <span>6</span></button>
+                <button class="filter-button" data-filter="tools" type="button">工具 <span>5</span></button>
+              </div>
+              <div class="sidebar-note">
+                <strong>截图怎么补？</strong>
+                <p>将与清单同名的 PNG 或 WebP 文件放入 <code>screenshots/</code>，展览页会自动显示真实图片。</p>
+                <a href="docs/截图清单.md">打开截图清单 →</a>
+              </div>
+            </aside>
+            <div class="module-results">
+              <div class="results-toolbar">
+                <span id="resultCount">显示 22 个产品入口</span>
+                <button class="outline-button" id="expandAll" type="button">展开全部说明</button>
+              </div>
+              <div class="module-grid" id="moduleGrid" aria-live="polite"></div>
+              <div class="empty-results" id="emptyResults" hidden>
+                <strong>没有匹配的模块</strong>
+                <p>换一个关键词，或清除当前筛选条件。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section detail-section page-width" id="detail">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow">MODULE DETAIL</p>
+            <h2>从入口到最小功能</h2>
+          </div>
+          <p>每个入口都按“页面 / 标签 → 区域 → 子功能 → 用法”展开；招聘方看工程拆解，网站用户看操作路径。</p>
+        </div>
+        <article class="detail-panel" id="detailPanel">
+          <div id="detailContent"></div>
+        </article>
+      </section>
+
+      <section class="section technology-section" id="technology">
+        <div class="page-width">
+          <div class="section-heading split-heading">
+            <div>
+              <p class="eyebrow">TECHNOLOGY & TERMS</p>
+              <h2>写了什么，也讲清楚为什么用</h2>
+            </div>
+            <p>技术名词不是装饰标签。每一层都对应真实职责：页面交互、接口编排、数据事实、研究计算和可恢复任务。</p>
+          </div>
+          <div class="technology-grid">
+            <article class="tech-group">
+              <div class="tech-heading"><span class="tech-index">01</span><h3>前端</h3></div>
+              <p>浏览器里看到的结构、交互和图表。</p>
+              <div class="tech-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>ECharts</span><span>响应式布局</span></div>
+            </article>
+            <article class="tech-group">
+              <div class="tech-heading"><span class="tech-index">02</span><h3>后端</h3></div>
+              <p>把页面请求转换为数据、规则和研究任务。</p>
+              <div class="tech-tags"><span>Python</span><span>FastAPI</span><span>Uvicorn</span><span>REST API</span><span>异步任务</span></div>
+            </article>
+            <article class="tech-group">
+              <div class="tech-heading"><span class="tech-index">03</span><h3>数据与存储</h3></div>
+              <p>接入、保存、回补并标记每条事实的来源和时效。</p>
+              <div class="tech-tags"><span>Futu OpenD</span><span>baostock</span><span>SQLAlchemy</span><span>SQLite</span><span>缓存</span></div>
+            </article>
+            <article class="tech-group">
+              <div class="tech-heading"><span class="tech-index">04</span><h3>研究与 AI</h3></div>
+              <p>将指标、估值、回测和证据组织成可回看的结论。</p>
+              <div class="tech-tags"><span>多周期指标</span><span>回测</span><span>PEG</span><span>BYOK</span><span>Agent</span></div>
+            </article>
+            <article class="tech-group">
+              <div class="tech-heading"><span class="tech-index">05</span><h3>部署</h3></div>
+              <p>动态服务和静态展示分别处理，域名与运行节点保持解耦。</p>
+              <div class="tech-tags"><span>Linux</span><span>nginx</span><span>systemd</span><span>HTTPS</span><span>Cloudflare Pages</span></div>
+            </article>
+            <article class="tech-group tech-definition">
+              <div class="tech-heading"><span class="tech-index">06</span><h3>通俗解释</h3></div>
+              <p>例如，API 是前后端约定的入口；As-of 是截至某个时点可见的数据；BYOK 是用户使用自己的模型密钥。</p>
+              <a href="docs/技术栈与名词.md">查看完整名词说明 →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section architecture-section page-width" id="architecture">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow">SYSTEM ARCHITECTURE</p>
+            <h2>数据先成为事实，再成为结论</h2>
+          </div>
+          <p>平台将实时行情、历史回补、研究计算和页面呈现分层，避免前端直接拼接或把旧数据伪装成实时结果。</p>
+        </div>
+        <div class="architecture-flow">
+          <div class="architecture-node source-node"><span>01</span><strong>行情与资讯源</strong><small>Futu OpenD / baostock / 资讯与研报</small></div>
+          <div class="architecture-connector" aria-hidden="true">→</div>
+          <div class="architecture-node"><span>02</span><strong>数据接入与事实层</strong><small>来源、时间、标的、周期、状态</small></div>
+          <div class="architecture-connector" aria-hidden="true">→</div>
+          <div class="architecture-node"><span>03</span><strong>研究计算层</strong><small>指标 / 复盘 / 估值 / 策略 / 回测</small></div>
+          <div class="architecture-connector" aria-hidden="true">→</div>
+          <div class="architecture-node"><span>04</span><strong>服务与页面</strong><small>FastAPI / JavaScript / ECharts</small></div>
+        </div>
+        <div class="architecture-notes">
+          <div><strong>实时</strong><span>实时报价能力可用时展示当前行情，并标出更新时间。</span></div>
+          <div><strong>缓存</strong><span>减少重复请求，但不会把缓存命中当成实时证明。</span></div>
+          <div><strong>回补</strong><span>历史路径补充交易日数据，和实时行情保持来源区分。</span></div>
+          <div><strong>不可用</strong><span>无法保证口径时明确显示受限状态，不强行填出结果。</span></div>
+        </div>
+      </section>
+
+      <section class="section next-section page-width">
+        <div class="next-content">
+          <p class="eyebrow">KEEP THE EXHIBIT CURRENT</p>
+          <h2>项目更新后，展示也能继续更新</h2>
+          <p>新增功能时，只需要在独立展示仓库补充模块说明，并把对应截图按清单文件名放入 <code>screenshots/</code>。主项目的代码、工作日志和真实产品文件保持原样。</p>
+          <div class="next-actions">
+            <a class="button button-primary" href="docs/功能说明.md">查看功能说明</a>
+            <a class="button button-secondary" href="docs/截图清单.md">查看截图清单</a>
+          </div>
+        </div>
+        <div class="next-index" aria-hidden="true"><span>SHOWCASE</span><strong>→</strong></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-width footer-inner">
+        <div><strong>车厘子蛋糕机器人</strong><span>A 股量化研究平台项目展示</span></div>
+        <div><a href="#top">回到顶部</a><a href="README.md">README</a><a href="docs/截图清单.md">截图清单</a></div>
+      </div>
+    </footer>
+  </body>
+</html>

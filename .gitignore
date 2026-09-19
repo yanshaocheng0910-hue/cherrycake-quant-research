@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+.env
+.env.*
+*.db
+*.sqlite3
+*.key
+*.pem
+node_modules/
+dist/
+output/
