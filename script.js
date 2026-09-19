@@ -522,8 +522,8 @@ const modules = [...baseModules.filter((item) => !["information", "account"].inc
       screener: [
         ["条件编辑器", "将趋势、评分、指标、成交和板块条件组织成可保存规则。", "新建策略，添加条件并确认字段含义。"],
         ["组合逻辑", "用全部满足或任一满足表达不同研究假设。", "先选组合方式，再运行筛选，避免条件含义混淆。"],
-        ["结果与命中解释", "展示候选数量、命中条件和下一步入口。", "点击候选进入机器人，检查筛选结果是否符合预期。"],
-        ["策略保存与回测", "把筛选规则保留给后续重复运行，并连接综合评分回测。", "保存策略后从结果页进入回测，不需要重新手工录入。"]
+        ["候选结果", "展示命中数量、候选列表和数据状态，可保存规则供后续重复运行。", "运行筛选后检查候选范围和数据状态。"],
+        ["命中原因", "逐条查看候选符合哪些条件，再进入机器人或回测。", "打开单个候选，核对命中条件后继续研究或验证。"]
       ],
       ai: [
         ["AI 研判首页", "从股票解释、市场复盘、资讯总结和研报阅读进入不同研究上下文。", "先选择问题类型和研究对象，再开始对话。"],
@@ -747,7 +747,7 @@ function showcaseModuleTemplate(item, index) {
   const features = item.hierarchy || item.features.map((feature) => ({ name: feature.name, detail: feature.detail, usage: "按页面提示操作" }));
   const mainFile = item.screenshots[0] || "待补截图";
   const featureBlocks = features.map((feature, featureIndex) => {
-    const file = item.screenshots[featureIndex + 1] || item.screenshots[featureIndex] || item.screenshots[item.screenshots.length - 1] || "待补截图";
+    const file = item.screenshots[featureIndex] || "待补截图";
     const shotId = `stream-shot-${item.id}-${featureIndex + 1}`;
     return `
       <article class="showcase-feature" id="stream-feature-${escapeHtml(item.id)}-${featureIndex + 1}">
@@ -761,7 +761,7 @@ function showcaseModuleTemplate(item, index) {
         ${showcaseShotTemplate(file, `${item.title} / ${feature.name}`, shotId, "功能截图")}
       </article>`;
   }).join("");
-  const extraStart = Math.max(1 + features.length, 1);
+  const extraStart = Math.max(features.length, 1);
   const extraShots = item.screenshots.slice(extraStart).map((file, extraIndex) => showcaseShotTemplate(file, item.title, `stream-extra-${item.id}-${extraIndex + 1}`, "补充截图")).join("");
   return `
     <article class="showcase-module" id="showcase-${escapeHtml(item.id)}">
