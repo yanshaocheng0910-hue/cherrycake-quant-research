@@ -660,6 +660,7 @@ const modules = [...baseModules.filter((item) => !["information", "account"].inc
 
 const moduleGrid = document.querySelector("#moduleGrid");
 const featuredGrid = document.querySelector("#featuredGrid");
+const showcaseStream = document.querySelector("#showcaseStream");
 const detailContent = document.querySelector("#detailContent");
 const resultCount = document.querySelector("#resultCount");
 const emptyResults = document.querySelector("#emptyResults");
@@ -720,7 +721,7 @@ function featuredCardTemplate(item, index) {
         <div class="screenshot-placeholder"><strong>截图</strong><span>待补真实界面</span></div>
         <figcaption><span>主模块截图</span><small>进入详情看小功能</small></figcaption>
       </figure>
-      <a class="featured-card-link" href="#detail" data-featured-module="${escapeHtml(item.id)}">查看 ${escapeHtml(item.title)} 的功能与截图 →</a>
+      <a class="featured-card-link" href="#showcase-${escapeHtml(item.id)}">查看 ${escapeHtml(item.title)} 的功能与截图 →</a>
     </article>`;
 }
 
@@ -728,10 +729,68 @@ function renderFeatured() {
   if (!featuredGrid) return;
   const featured = featuredModuleIds.map((id) => modules.find((item) => item.id === id)).filter(Boolean);
   featuredGrid.innerHTML = featured.map(featuredCardTemplate).join("");
-  featuredGrid.querySelectorAll("[data-featured-module]").forEach((link) => {
+}
+
+function showcaseShotTemplate(file, title, shotId, caption = "截图") {
+  const safeFile = escapeHtml(file);
+  return `
+    <figure class="showcase-shot screenshot-slot" id="${escapeHtml(shotId)}" data-screenshot-file="${safeFile}" aria-label="${escapeHtml(title)}截图预留位">
+      <div class="screenshot-preview">
+        <img src="screenshots/${safeFile}" alt="${escapeHtml(title)}截图" loading="lazy" />
+        <div class="screenshot-placeholder"><strong>截图</strong><span>待补真实界面</span></div>
+      </div>
+      <figcaption class="screenshot-caption"><span class="screenshot-label">${escapeHtml(caption)}</span><small class="pending-label">待放图</small></figcaption>
+    </figure>`;
+}
+
+function showcaseModuleTemplate(item, index) {
+  const features = item.hierarchy || item.features.map((feature) => ({ name: feature.name, detail: feature.detail, usage: "按页面提示操作" }));
+  const mainFile = item.screenshots[0] || "待补截图";
+  const featureBlocks = features.map((feature, featureIndex) => {
+    const file = item.screenshots[featureIndex + 1] || item.screenshots[featureIndex] || item.screenshots[item.screenshots.length - 1] || "待补截图";
+    const shotId = `stream-shot-${item.id}-${featureIndex + 1}`;
+    return `
+      <article class="showcase-feature" id="stream-feature-${escapeHtml(item.id)}-${featureIndex + 1}">
+        <div class="showcase-feature-copy">
+          <span class="showcase-feature-number">功能 ${String(featureIndex + 1).padStart(2, "0")}</span>
+          <h4>${escapeHtml(feature.name)}</h4>
+          <p>${escapeHtml(feature.detail)}</p>
+          <small><b>怎么用：</b>${escapeHtml(feature.usage)}</small>
+          <a href="#${escapeHtml(shotId)}">跳到这项功能截图 ↓</a>
+        </div>
+        ${showcaseShotTemplate(file, `${item.title} / ${feature.name}`, shotId, "功能截图")}
+      </article>`;
+  }).join("");
+  const extraStart = Math.max(1 + features.length, 1);
+  const extraShots = item.screenshots.slice(extraStart).map((file, extraIndex) => showcaseShotTemplate(file, item.title, `stream-extra-${item.id}-${extraIndex + 1}`, "补充截图")).join("");
+  return `
+    <article class="showcase-module" id="showcase-${escapeHtml(item.id)}">
+      <div class="showcase-module-header">
+        <div><span class="module-number">${escapeHtml(item.number)} / 22 · ${escapeHtml(item.categoryLabel)}</span><h3>${escapeHtml(item.title)}</h3></div>
+        <span class="showcase-count">${features.length} 项功能 · ${item.screenshots.length} 个截图位</span>
+      </div>
+      <div class="showcase-overview">
+        ${showcaseShotTemplate(mainFile, `${item.title}主界面`, `stream-main-${item.id}`, "模块主界面")}
+        <div class="showcase-overview-copy">
+          <p class="showcase-purpose">${escapeHtml(item.purpose)}</p>
+          <h4>这个模块怎么用</h4>
+          <ol class="steps-list">${item.usage.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>
+          <a class="showcase-detail-link" href="#detail" data-open-stream-detail="${escapeHtml(item.id)}">查看工程拆解与完整截图索引 →</a>
+        </div>
+      </div>
+      <div class="showcase-feature-heading"><span class="section-kicker">FEATURE BY FEATURE</span><h4>下面逐个看功能</h4><p>每个功能都对应一个独立截图位，后续补图后自动显示。</p></div>
+      <div class="showcase-feature-list">${featureBlocks}</div>
+      ${extraShots ? `<div class="showcase-extra"><h4>补充界面</h4><div class="showcase-extra-grid">${extraShots}</div></div>` : ""}
+    </article>`;
+}
+
+function renderShowcaseStream() {
+  if (!showcaseStream) return;
+  showcaseStream.innerHTML = modules.map(showcaseModuleTemplate).join("");
+  showcaseStream.querySelectorAll("[data-open-stream-detail]").forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
-      selectModule(link.dataset.featuredModule, true);
+      selectModule(link.dataset.openStreamDetail, true);
     });
   });
 }
@@ -848,4 +907,5 @@ expandAllButton.addEventListener("click", () => {
 
 selectModule(selectedId);
 renderFeatured();
+renderShowcaseStream();
 bindScreenshotFallbacks();
