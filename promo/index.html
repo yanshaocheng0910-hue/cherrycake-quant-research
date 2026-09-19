@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="车厘子蛋糕量化研究机器人：从指标与信号，到策略筛选、同窗回测和有来源的 AI 研判，把一只股票从依据到复盘问明白。">
+  <title>车厘子蛋糕 · 先看风险，再看机会</title>
+  <link rel="stylesheet" href="welcome_alt.css?v=20260902c">
+  <script src="welcome_alt.js?v=20260902c" defer></script>
+</head>
+<body class="alt-page">
+  <a class="alt-skip-link" href="#main">跳到主要内容</a>
+
+  <header class="alt-header">
+    <div class="alt-header-main">
+      <a class="alt-brand" href="./" aria-label="车厘子蛋糕机器人首页">
+        <span class="alt-brand-mark" aria-hidden="true"></span>
+        <span class="alt-brand-copy">
+          <strong><span class="alt-brand-full">Cherry Cake Quant Robot</span><span class="alt-brand-short">CCQR</span></strong>
+          <small>量化研究系统</small>
+        </span>
+      </a>
+      <nav class="alt-nav-scroll" aria-label="产品介绍">
+        <ul class="alt-nav-list">
+          <li><a href="#four-layer">指标体系</a></li>
+          <li><a href="#robot-modes">机器人</a></li>
+          <li><a href="#controlled-flow">受控流程</a></li>
+          <li><a href="#market-discovery">市场发现</a></li>
+          <li><a href="#strategy-research">策略与回测</a></li>
+          <li><a href="#ai-assistant">AI 助手</a></li>
+          <li><a href="#research-loop">研究闭环</a></li>
+        </ul>
+      </nav>
+      <div class="alt-account-actions" aria-label="账号入口">
+        <a class="alt-button alt-button-quiet" href="../index.html#modules">登录</a>
+        <a class="alt-button alt-button-primary" href="../index.html#modules">免费试用</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="alt-hero" aria-labelledby="hero-title">
+      <canvas id="altKlineCanvas" aria-label="固定种子合成 A 股配色 K 线：红涨绿跌，下跌筑底、分型回踩抬升，再以大阳柱加速入云" role="img"></canvas>
+      <div class="alt-hero-wash" aria-hidden="true"></div>
+      <div class="alt-hero-content">
+        <p class="alt-eyebrow">CHERRY CAKE · RESEARCH ROBOT</p>
+        <h1 id="hero-title"><span class="alt-title-first">先看风险</span><span>再看机会</span></h1>
+        <p class="alt-hero-lede"><strong>让每一次判断有据可查&nbsp;&nbsp;让每一次复盘都有来路</strong></p>
+      </div>
+      <div class="alt-hero-handoff" data-alt-hero-handoff aria-hidden="true">
+        <span>02 / RESEARCH FLOW</span>
+        <strong><span>穿过云层</span><span>研究才刚开始</span></strong>
+        <small>为把复杂研究变成清晰纪律而生</small>
+      </div>
+      <div class="alt-cloud-wordmark" aria-label="Cherry Cake Quant Robot">
+        <em>Cherry Cake</em><span>QUANT ROBOT</span>
+      </div>
+      <aside class="alt-trial-rail" aria-label="产品体验入口" aria-hidden="true" data-alt-trial-rail data-state="waiting">
+        <div class="alt-shell alt-trial-rail-inner">
+          <p class="alt-trial-rail-copy">以真实行情和本地系统事实为底座，把指标、信号、风险、板块与复盘串成一条可核验的量化研究链。</p>
+          <div class="alt-trial-rail-actions">
+            <span>无需安装 · 登录即用</span>
+            <a class="alt-button alt-trial-rail-button" href="../index.html#modules">免费试用</a>
+            <a class="alt-trial-rail-link" href="#product-tour">查看功能 <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </aside>
+      <noscript>
+        <p class="alt-noscript">启用 JavaScript 后可查看合成 K 线演示；产品介绍、登录和注册入口仍可使用。</p>
+      </noscript>
+    </section>
+
+    <section id="product-tour" class="alt-showcase" aria-labelledby="product-tour-title" data-alt-showcase>
+      <div class="alt-shell">
+        <div class="alt-showcase-heading">
+          <p class="alt-section-label">一条研究链，六个工作面</p>
+          <h2 id="product-tour-title" class="alt-title-lines"><span>不是一句建议</span><span>是可回看的研究链</span></h2>
+          <p>从“为什么值得看”，一路核对到“什么情况该停”。六个真实产品页面依次展开。</p>
+        </div>
+        <div class="alt-showcase-tabs" role="tablist" aria-label="产品功能巡览">
+          <button id="alt-tour-tab-0" type="button" role="tab" aria-selected="true" aria-controls="alt-tour-panel-0" data-alt-showcase-tab="0"><small>01 / INDICATORS</small><b>指标决策链</b></button>
+          <button id="alt-tour-tab-1" type="button" role="tab" aria-selected="false" aria-controls="alt-tour-panel-1" data-alt-showcase-tab="1" tabindex="-1"><small>02 / SIGNALS</small><b>简化信号</b></button>
+          <button id="alt-tour-tab-2" type="button" role="tab" aria-selected="false" aria-controls="alt-tour-panel-2" data-alt-showcase-tab="2" tabindex="-1"><small>03 / CONTROL</small><b>受控流程</b></button>
+          <button id="alt-tour-tab-3" type="button" role="tab" aria-selected="false" aria-controls="alt-tour-panel-3" data-alt-showcase-tab="3" tabindex="-1"><small>04 / SECTORS</small><b>板块中心</b></button>
+          <button id="alt-tour-tab-4" type="button" role="tab" aria-selected="false" aria-controls="alt-tour-panel-4" data-alt-showcase-tab="4" tabindex="-1"><small>05 / SCREENER</small><b>策略选股</b></button>
+          <button id="alt-tour-tab-5" type="button" role="tab" aria-selected="false" aria-controls="alt-tour-panel-5" data-alt-showcase-tab="5" tabindex="-1"><small>06 / WORKBENCH</small><b>研究工作台</b></button>
+        </div>
+        <div class="alt-showcase-stage" data-alt-showcase-stage data-autoplay="paused">
+          <button class="alt-showcase-arrow alt-showcase-prev" type="button" data-alt-showcase-prev aria-label="查看上一项"><span aria-hidden="true">‹</span></button>
+          <div class="alt-showcase-viewport">
+            <div class="alt-showcase-track" data-alt-showcase-track>
+              <article id="alt-tour-panel-0" class="alt-showcase-slide" role="tabpanel" aria-labelledby="alt-tour-tab-0" aria-hidden="false" data-alt-showcase-slide>
+                <div class="alt-showcase-copy">
+                  <p><span>01 / 06</span> 真实指标对齐</p>
+                  <h3 class="alt-title-lines"><span>把一只股看明白</span><span>四层指标一条决策链</span></h3>
+                  <p>DK 找买卖位置，DKX 看趋势拐点，O 判断结构，TRADING 观察主力资金行为。四层沿同一根 K 线核验。</p>
+                  <a class="alt-button alt-button-tour" href="#four-layer">看指标体系</a>
+                </div>
+                <figure class="alt-showcase-visual">
+                  <img src="marketing/four-layer-dk.webp" width="982" height="790" loading="eager" decoding="async" alt="四层指标真实页面">
+                  <figcaption>本地实机界面 · 非实时画面</figcaption>
+                </figure>
+                <ul class="alt-showcase-facts" aria-label="指标职责"><li>DK · 买卖位置</li><li>DKX · 趋势拐点</li><li>O · 结构趋势带</li><li>TRADING · 主力资金</li></ul>
+              </article>
+              <article id="alt-tour-panel-1" class="alt-showcase-slide" role="tabpanel" aria-labelledby="alt-tour-tab-1" aria-hidden="true" inert data-alt-showcase-slide>
+                <div class="alt-showcase-copy">
+                  <p><span>02 / 06</span> 一眼先看动作</p>
+                  <h3 class="alt-title-lines"><span>先给结论</span><span>再决定是否展开证据</span></h3>
+                  <p>简化信号只保留当前动作、方向和风险；需要复盘时，再切回专业模式逐根检查。</p>
+                  <a class="alt-button alt-button-tour" href="#robot-modes">看机器人模式</a>
+                </div>
+                <figure class="alt-showcase-visual">
+                  <img src="marketing/signal-simple.webp" width="1366" height="690" loading="lazy" decoding="async" alt="简化信号真实页面">
+                  <figcaption>本地实机界面 · 非实时画面</figcaption>
+                </figure>
+                <ul class="alt-showcase-facts" aria-label="简化信号重点"><li>当前动作</li><li>方向状态</li><li>风险先行</li><li>一键展开证据</li></ul>
+              </article>
+              <article id="alt-tour-panel-2" class="alt-showcase-slide" role="tabpanel" aria-labelledby="alt-tour-tab-2" aria-hidden="true" inert data-alt-showcase-slide>
+                <div class="alt-showcase-copy">
+                  <p><span>03 / 06</span> 研究边界透明</p>
+                  <h3 class="alt-title-lines"><span>信号风控授权执行</span><span>四道门分别说清</span></h3>
+                  <p>现在开放信号与人工确认；授权和自动执行保持锁定。机器人整理证据，不替你下单。</p>
+                  <a class="alt-button alt-button-tour" href="#controlled-flow">看受控流程</a>
+                </div>
+                <figure class="alt-showcase-visual">
+                  <img src="marketing/execution-boundary-walkthrough-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="机器人专业页面的真实截图">
+                  <figcaption>真实页面匿名化聚焦 · 非实时画面</figcaption>
+                </figure>
+                <ul class="alt-showcase-facts" aria-label="受控流程重点"><li>信号形成</li><li>风险条件</li><li>人工授权</li><li>执行未开放</li></ul>
+              </article>
+              <article id="alt-tour-panel-3" class="alt-showcase-slide" role="tabpanel" aria-labelledby="alt-tour-tab-3" aria-hidden="true" inert data-alt-showcase-slide>
+                <div class="alt-showcase-copy">
+                  <p><span>04 / 06</span> 自动缩小范围</p>
+                  <h3 class="alt-title-lines"><span>不手工挑选曲线</span><span>先看市场如何流动</span></h3>
+                  <p>板块资金按既定规则自动选取，正负共享零轴，再把值得看的方向交回机器人。</p>
+                  <a class="alt-button alt-button-tour" href="#market-discovery">看市场发现</a>
+                </div>
+                <figure class="alt-showcase-visual">
+                  <img src="marketing/market-discovery-walkthrough-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="板块中心真实页面的匿名化截图">
+                  <figcaption>真实页面匿名化聚焦 · 数值已弱化</figcaption>
+                </figure>
+                <ul class="alt-showcase-facts" aria-label="板块中心重点"><li>自动选择</li><li>红正绿负</li><li>共享零轴</li><li>来源与时点</li></ul>
+              </article>
+              <article id="alt-tour-panel-4" class="alt-showcase-slide" role="tabpanel" aria-labelledby="alt-tour-tab-4" aria-hidden="true" inert data-alt-showcase-slide>
+                <div class="alt-showcase-copy">
+                  <p><span>05 / 06</span> 条件可回看</p>
+                  <h3 class="alt-title-lines"><span>把条件说清楚</span><span>把理由留完整</span></h3>
+                  <p>自然语言先回填为确定性条件，再运行候选与日线评分；缺失数据不会被近似值悄悄补上。</p>
+                  <a class="alt-button alt-button-tour" href="#strategy-research">看策略研究</a>
+                </div>
+                <figure class="alt-showcase-visual">
+                  <img src="marketing/strategy-research-walkthrough-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="策略选股真实页面的匿名化截图">
+                  <figcaption>真实页面匿名化聚焦 · 无虚构候选</figcaption>
+                </figure>
+                <ul class="alt-showcase-facts" aria-label="策略选股重点"><li>自然语言描述</li><li>确定性条件</li><li>执行进度</li><li>数据缺口</li></ul>
+              </article>
+              <article id="alt-tour-panel-5" class="alt-showcase-slide" role="tabpanel" aria-labelledby="alt-tour-tab-5" aria-hidden="true" inert data-alt-showcase-slide>
+                <div class="alt-showcase-copy">
+                  <p><span>06 / 06</span> 研究留下痕迹</p>
+                  <h3 class="alt-title-lines"><span>研究从事实开始</span><span>复盘让判断继续</span></h3>
+                  <p>历史信号、板块快照、异常提醒和人工核验回到同一张工作台，让下一次研究接着继续。</p>
+                  <a class="alt-button alt-button-tour" href="#research-loop">看研究闭环</a>
+                </div>
+                <figure class="alt-showcase-visual">
+                  <img src="marketing/research-loop-walkthrough-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="市场工作台真实页面的匿名化截图">
+                  <figcaption>真实页面匿名化聚焦 · 只读工作台</figcaption>
+                </figure>
+                <ul class="alt-showcase-facts" aria-label="研究工作台重点"><li>历史事实</li><li>人工核验</li><li>板块快照</li><li>回到机器人</li></ul>
+              </article>
+            </div>
+          </div>
+          <button class="alt-showcase-arrow alt-showcase-next" type="button" data-alt-showcase-next aria-label="查看下一项"><span aria-hidden="true">›</span></button>
+          <div class="alt-showcase-progress" aria-hidden="true"><span data-alt-showcase-progress></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 效果B:单图从上滑下展示(Slide-down)。同上:文字分级跳出后,单张截图从上方滑落到位。 -->
+    <section id="signal-discipline" class="alt-signal-ad" data-alt-slidedown aria-labelledby="signal-ad-title">
+      <div class="alt-shell alt-signal-ad-layout">
+        <div class="alt-signal-ad-copy">
+          <p class="alt-section-label alt-anim" style="--anim-delay:.05s">进场 / 出场 · ENTRY / EXIT</p>
+          <h2 id="signal-ad-title"><span class="alt-anim" style="--anim-delay:.16s;--anim-dy:34px;--anim-s:1.12">想抄底&nbsp;&nbsp;先等信号</span><span class="alt-signal-title-exit alt-anim" style="--anim-delay:.4s">想逃顶&nbsp;&nbsp;先看失效</span></h2>
+          <p class="alt-signal-ad-lede alt-anim" style="--anim-delay:.56s">不知道何时进场，机器提醒买点形成；不会止盈，机器追踪趋势转弱与风险变化。把“为什么进”和“什么情况该停”写进同一张研究图。</p>
+          <div class="alt-signal-ad-pair alt-anim" style="--anim-delay:.68s" aria-label="进出场信号说明">
+            <article>
+              <small>01 / ENTRY</small>
+              <h3 class="alt-title-lines"><span>不是看到下跌</span><span>就叫做抄底</span></h3>
+              <p>先等结构止跌、趋势拐点与资金条件相互核验，再决定是否进入研究。</p>
+              <b>入场提醒 · 条件形成才出现</b>
+            </article>
+            <article>
+              <small>02 / EXIT</small>
+              <h3 class="alt-title-lines"><span>不会止盈</span><span>别让利润坐回去</span></h3>
+              <p>趋势转弱、风险抬升或原有条件失效时，及时提醒你重新评估与保护利润。</p>
+              <b>出场提醒 · 变化原因可回看</b>
+            </article>
+          </div>
+          <p class="alt-signal-ad-boundary alt-anim" style="--anim-delay:.78s">低点不靠猜，顶部不承诺抓准。信号负责提醒与核对，不替你下单。</p>
+          <div class="alt-signal-ad-actions alt-anim" style="--anim-delay:.88s">
+            <a class="alt-button alt-button-primary" href="../index.html#modules">免费试用</a>
+            <a class="alt-hero-feature-link" href="#robot-modes">查看信号模式 <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <figure class="alt-media alt-signal-ad-visual alt-slidedown-media">
+          <div class="alt-signal-ad-frame">
+            <img src="marketing/robot-evidence.webp" width="1600" height="780" loading="lazy" decoding="async" alt="机器人专业界面中的当前动作、趋势信号和风险计划">
+            <ol class="alt-signal-ad-pins" aria-label="网页标注">
+              <li class="alt-signal-pin alt-signal-pin-entry"><span>01</span><b>入场候选</b></li>
+              <li class="alt-signal-pin alt-signal-pin-trend"><span>02</span><b>趋势确认</b></li>
+              <li class="alt-signal-pin alt-signal-pin-exit"><span>03</span><b>风险 / 退出复核</b></li>
+            </ol>
+          </div>
+          <figcaption>本地实机界面 · 非实时画面 · 编号为网页标注</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="four-layer" class="alt-section alt-four-layer" aria-labelledby="four-layer-title">
+      <div class="alt-shell">
+        <div class="alt-section-intro">
+          <p class="alt-section-label">四指标体系</p>
+          <h2 id="four-layer-title" class="alt-title-lines"><span>信号只是入口</span><span>证据才是上下文</span></h2>
+          <p>DK、DKX、O 与 TRADING 各自承担不同观察任务，沿着同一根 K 线展开。页面只整理证据，不替你做决定。</p>
+        </div>
+        <div class="alt-four-layout">
+          <figure class="alt-media alt-four-primary">
+            <img src="marketing/four-layer-dk.webp" width="982" height="790" loading="eager" decoding="async" alt="DK、DKX 与 TRADING 四层指标界面">
+            <figcaption>真实指标素材 · 仅裁切与排版 · 未重画 K 线或指标 · 画面非实时</figcaption>
+          </figure>
+          <figure class="alt-media alt-four-secondary">
+            <img src="marketing/four-layer-o.webp" width="994" height="470" loading="lazy" decoding="async" alt="O 趋势结构带指标界面">
+            <figcaption>本地实机界面截屏 · 画面非实时</figcaption>
+          </figure>
+          <aside class="alt-four-notes" aria-label="四个指标的观察任务">
+            <div><b>DK</b><span>买卖位置</span></div>
+            <div><b>DKX</b><span>趋势拐点</span></div>
+            <div><b>O</b><span>结构趋势带</span></div>
+            <div><b>TRADING</b><span>主力资金行为</span></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="robot-modes" class="alt-section alt-modes" aria-labelledby="robot-modes-title">
+      <div class="alt-shell">
+        <div class="alt-section-intro alt-section-intro-narrow">
+          <p class="alt-section-label">机器人模式</p>
+          <h2 id="robot-modes-title" class="alt-title-lines"><span>不用先学术语</span><span>也能把一只股问明白</span></h2>
+          <p>简化模式先把动作和风险说清，专业模式再还原依据。两个模式只改呈现，不改公式。</p>
+        </div>
+        <div class="alt-tabs-wrap" data-alt-mode-switcher>
+          <div class="alt-tabs" role="tablist" aria-label="机器人显示模式">
+            <button id="alt-tab-simple" type="button" role="tab" aria-selected="true" aria-controls="alt-panel-simple" data-alt-mode-tab="simple">简化信号</button>
+            <button id="alt-tab-pro" type="button" role="tab" aria-selected="false" aria-controls="alt-panel-pro" data-alt-mode-tab="pro" tabindex="-1">专业复盘</button>
+          </div>
+          <div class="alt-tab-panels">
+            <article id="alt-panel-simple" class="alt-tab-panel" role="tabpanel" aria-labelledby="alt-tab-simple" data-alt-mode-panel="simple" aria-hidden="false">
+              <figure class="alt-media alt-mode-media">
+                <img src="marketing/signal-simple.webp" width="1366" height="690" loading="eager" decoding="async" alt="简化信号机器人界面">
+                <figcaption>本地实机界面截屏 · 画面非实时</figcaption>
+              </figure>
+              <div class="alt-mode-copy">
+                <p class="alt-card-label">简化信号</p>
+                <h3 class="alt-title-lines"><span>一句话先看状态</span><span>再决定是否深挖</span></h3>
+                <p>选标的、选周期后，集中看买、卖、候选或等待。需要更多证据，再切换专业复盘。</p>
+              </div>
+            </article>
+            <article id="alt-panel-pro" class="alt-tab-panel" role="tabpanel" aria-labelledby="alt-tab-pro" data-alt-mode-panel="pro" aria-hidden="true" inert>
+              <figure class="alt-media alt-mode-media">
+                <img src="marketing/robot-evidence.webp" width="1600" height="780" loading="lazy" decoding="async" alt="专业机器人指标证据界面">
+                <figcaption>本地实机界面截屏 · 画面非实时</figcaption>
+              </figure>
+              <div class="alt-mode-copy">
+                <p class="alt-card-label">专业复盘</p>
+                <h3 class="alt-title-lines"><span>把一句信号</span><span>还原成形成过程</span></h3>
+                <p>K 线、指标家族、风险信息与逐根状态放回同一条时间轴，方便核验机器人为什么这样整理。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 效果B:单图从上滑下展示(Slide-down)。文字先分级跳出(大标题→红色关键词→小字),再让单张截图从上方滑落到位。 -->
+    <section id="controlled-flow" class="alt-section alt-flow-section" data-alt-slidedown aria-labelledby="controlled-flow-title">
+      <div class="alt-shell alt-split-layout">
+        <div class="alt-section-intro">
+          <p class="alt-section-label alt-anim" style="--anim-delay:.05s">受控流程</p>
+          <h2 id="controlled-flow-title" class="alt-flipdeck-title">
+            <span class="alt-anim" style="--anim-delay:.16s;--anim-dy:34px">先把信号跑稳</span>
+            <em class="alt-key alt-anim" style="--anim-delay:.42s;--anim-s:1.18">再谈自动执行</em>
+          </h2>
+          <p class="alt-anim" style="--anim-delay:.6s">信号、风控、授权、执行是四道不同的门。当前只开放前两步的研究与人工确认。</p>
+          <ol class="alt-flow-list alt-anim" style="--anim-delay:.72s" aria-label="执行链路的四个边界">
+            <li><span>01</span><b>信号</b><em>形成与确认</em></li>
+            <li><span>02</span><b>风控</b><em>仓位与失效条件</em></li>
+            <li><span>03</span><b>授权</b><em>账户与券商权限</em></li>
+            <li><span>04</span><b>执行</b><em>需真实环境验收</em></li>
+          </ol>
+          <p class="alt-boundary-note alt-anim" style="--anim-delay:.82s">自动下单：规划中 · 尚未开放 · 需券商授权、额度确认、风控与真实环境验收</p>
+        </div>
+        <figure class="alt-media alt-split-media alt-slidedown-media">
+          <div class="alt-walkthrough-frame">
+            <picture>
+              <source media="(max-width: 720px)" srcset="marketing/execution-boundary-walkthrough-800.webp">
+              <img src="marketing/execution-boundary-walkthrough-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="真实机器人页面，展示标的周期、数据状态、K线信号区与策略边界">
+            </picture>
+            <ol class="alt-walkthrough-notes" aria-label="机器人页面重点标注">
+              <li class="alt-pin alt-pin-cycle"><span>01</span><b>标的与周期</b></li>
+              <li class="alt-pin alt-pin-status"><span>02</span><b>数据完整度</b></li>
+              <li class="alt-pin alt-pin-evidence"><span>03</span><b>K线与信号证据</b></li>
+              <li class="alt-pin alt-pin-boundary"><span>04</span><b>策略边界</b></li>
+            </ol>
+          </div>
+          <figcaption>真实页面截图 · AI 仅做匿名化与聚焦处理 · 编号为网页标注 · 画面非实时</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="market-discovery" class="alt-section alt-flipdeck-section" aria-labelledby="market-discovery-title">
+      <!-- 效果A:多图翻转展示(Flip Deck)。整段钉住,滚动到某一段就把对应视图「翻」进来(快速 3D 翻页+动态模糊,图+文一起换),不是计时器自动播。激活视图内文字分级跳出:大标题→红色关键词→小字→图。以后加视图只需再复制一个 .alt-flipdeck-slide。 -->
+      <div class="alt-flipdeck-track" data-alt-flipdeck aria-roledescription="滚动翻转切换功能视图" aria-label="市场发现功能视图">
+        <div class="alt-flipdeck-pin">
+          <div class="alt-shell alt-flipdeck-stage">
+
+            <div class="alt-flipdeck-slide is-active" data-alt-flipdeck-slide aria-hidden="false">
+              <div class="alt-evidence-row">
+                <div class="alt-evidence-copy">
+                  <p class="alt-flipdeck-eyebrow alt-anim" aria-hidden="true" style="--anim-delay:.05s"><b>01</b> / 02 · 市场发现</p>
+                  <h2 id="market-discovery-title" class="alt-flipdeck-title">
+                    <span class="alt-anim" style="--anim-delay:.16s;--anim-dy:34px">先看市场</span>
+                    <em class="alt-key alt-anim" style="--anim-delay:.42s;--anim-s:1.18">在动什么</em>
+                  </h2>
+                  <p class="alt-flipdeck-desc alt-anim" style="--anim-delay:.64s">板块、排行与异动把观察范围缩小，再把值得看的标的交回机器人核验。</p>
+                  <a class="alt-text-link alt-anim" style="--anim-delay:.78s" href="../index.html#modules">登录后查看市场工具 <span aria-hidden="true">↗</span></a>
+                </div>
+                <figure class="alt-media alt-evidence-media alt-flipdeck-media alt-anim" style="--anim-delay:.9s;--anim-dy:0">
+                  <span class="alt-flipdeck-ghost" aria-hidden="true">01</span>
+                  <div class="alt-walkthrough-frame">
+                    <span class="alt-flip-badge">视图 1 · 板块资金</span>
+                    <picture>
+                      <source media="(max-width: 720px)" srcset="marketing/market-discovery-walkthrough-800.webp">
+                      <img src="marketing/market-discovery-walkthrough-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="真实板块中心页面，展示自动板块筛选与正负零轴资金排行">
+                    </picture>
+                    <ol class="alt-walkthrough-notes" aria-label="板块资金页面重点标注">
+                      <li class="alt-pin alt-pin-market-auto"><span>01</span><b>自动选取</b></li>
+                      <li class="alt-pin alt-pin-market-axis"><span>02</span><b>共享零轴</b></li>
+                      <li class="alt-pin alt-pin-market-flow"><span>03</span><b>红正绿负</b></li>
+                    </ol>
+                  </div>
+                  <figcaption>真实页面截图 · AI 仅做匿名化与聚焦处理 · 红色正向、绿色负向 · 数值已弱化</figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div class="alt-flipdeck-slide" data-alt-flipdeck-slide aria-hidden="true" inert>
+              <div class="alt-evidence-row">
+                <div class="alt-evidence-copy">
+                  <p class="alt-flipdeck-eyebrow alt-anim" aria-hidden="true" style="--anim-delay:.05s"><b>02</b> / 02 · 交回核验</p>
+                  <h2 class="alt-flipdeck-title">
+                    <span class="alt-anim" style="--anim-delay:.16s;--anim-dy:34px">把异动</span>
+                    <em class="alt-key alt-anim" style="--anim-delay:.42s;--anim-s:1.18">交回机器人</em>
+                  </h2>
+                  <p class="alt-flipdeck-desc alt-anim" style="--anim-delay:.64s">榜单只负责缩小范围。进入机器人后，再用标的、周期、数据状态与 K 线证据核验，不把热度直接当结论。</p>
+                  <a class="alt-text-link alt-anim" style="--anim-delay:.78s" href="../index.html#modules">登录后核验标的 <span aria-hidden="true">↗</span></a>
+                </div>
+                <figure class="alt-media alt-evidence-media alt-flipdeck-media alt-anim" style="--anim-delay:.9s;--anim-dy:0">
+                  <span class="alt-flipdeck-ghost" aria-hidden="true">02</span>
+                  <div class="alt-walkthrough-frame">
+                    <span class="alt-flip-badge">视图 2 · 机器人核验</span>
+                    <picture>
+                      <source media="(max-width: 720px)" srcset="marketing/execution-boundary-walkthrough-800.webp">
+                      <img src="marketing/execution-boundary-walkthrough-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="真实机器人页面，展示标的周期、数据状态、K 线信号区与策略边界">
+                    </picture>
+                    <ol class="alt-walkthrough-notes" aria-label="机器人核验页面重点标注">
+                      <li class="alt-pin alt-pin-cycle"><span>01</span><b>标的与周期</b></li>
+                      <li class="alt-pin alt-pin-status"><span>02</span><b>数据完整度</b></li>
+                      <li class="alt-pin alt-pin-evidence"><span>03</span><b>K 线与信号证据</b></li>
+                      <li class="alt-pin alt-pin-boundary"><span>04</span><b>策略边界</b></li>
+                    </ol>
+                  </div>
+                  <figcaption>真实页面截图 · AI 仅做匿名化与聚焦处理 · 编号为网页标注 · 画面非实时</figcaption>
+                </figure>
+              </div>
+            </div>
+
+          </div>
+          <div class="alt-flipdeck-dots" role="tablist" aria-label="切换功能视图" data-alt-flipdeck-dots></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="market-discovery-auto" class="alt-section alt-autodeck-section" aria-labelledby="market-discovery-auto-title" data-alt-autodeck>
+      <p class="alt-autodeck-label"><span aria-hidden="true">▼</span> 对比版 · 自动播放（无需滚动 · 每张停留几秒自动翻 · 字先播完，图才滑上来）</p>
+      <div class="alt-autodeck-viewport">
+        <button class="alt-showcase-arrow alt-showcase-prev alt-autodeck-prev" type="button" data-alt-autodeck-prev aria-label="上一个视图"><span aria-hidden="true">‹</span></button>
+        <div class="alt-shell alt-autodeck-stage" data-alt-autodeck-stage>
+
+          <div class="alt-autodeck-slide is-active" data-alt-autodeck-slide aria-hidden="false">
+            <div class="alt-evidence-row">
+              <div class="alt-evidence-copy">
+                <p class="alt-flipdeck-eyebrow alt-anim" aria-hidden="true" style="--anim-delay:.05s"><b>01</b> / 02 · 市场发现</p>
+                <h2 id="market-discovery-auto-title" class="alt-flipdeck-title">
+                  <span class="alt-anim" style="--anim-delay:.16s;--anim-dy:34px">先看市场</span>
+                  <em class="alt-key alt-anim" style="--anim-delay:.42s;--anim-s:1.18">在动什么</em>
+                </h2>
+                <p class="alt-flipdeck-desc alt-anim" style="--anim-delay:.64s">板块、排行与异动把观察范围缩小，再把值得看的标的交回机器人核验。</p>
+                <a class="alt-text-link alt-anim" style="--anim-delay:.78s" href="../index.html#modules">登录后查看市场工具 <span aria-hidden="true">↗</span></a>
+              </div>
+              <figure class="alt-media alt-evidence-media alt-flipdeck-media alt-anim" style="--anim-delay:1.4s;--anim-dy:34px">
+                <span class="alt-flipdeck-ghost" aria-hidden="true">01</span>
+                <div class="alt-walkthrough-frame">
+                  <span class="alt-flip-badge">视图 1 · 板块资金</span>
+                  <picture>
+                    <source media="(max-width: 720px)" srcset="marketing/market-discovery-walkthrough-800.webp">
+                    <img src="marketing/market-discovery-walkthrough-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="真实板块中心页面，展示自动板块筛选与正负零轴资金排行">
+                  </picture>
+                  <ol class="alt-walkthrough-notes" aria-label="板块资金页面重点标注">
+                    <li class="alt-pin alt-pin-market-auto"><span>01</span><b>自动选取</b></li>
+                    <li class="alt-pin alt-pin-market-axis"><span>02</span><b>共享零轴</b></li>
+                    <li class="alt-pin alt-pin-market-flow"><span>03</span><b>红正绿负</b></li>
+                  </ol>
+                </div>
+                <figcaption>真实页面截图 · AI 仅做匿名化与聚焦处理 · 红色正向、绿色负向 · 数值已弱化</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="alt-autodeck-slide" data-alt-autodeck-slide aria-hidden="true" inert>
+            <div class="alt-evidence-row">
+              <div class="alt-evidence-copy">
+                <p class="alt-flipdeck-eyebrow alt-anim" aria-hidden="true" style="--anim-delay:.05s"><b>02</b> / 02 · 交回核验</p>
+                <h2 class="alt-flipdeck-title">
+                  <span class="alt-anim" style="--anim-delay:.16s;--anim-dy:34px">把异动</span>
+                  <em class="alt-key alt-anim" style="--anim-delay:.42s;--anim-s:1.18">交回机器人</em>
+                </h2>
+                <p class="alt-flipdeck-desc alt-anim" style="--anim-delay:.64s">榜单只负责缩小范围。进入机器人后，再用标的、周期、数据状态与 K 线证据核验，不把热度直接当结论。</p>
+                <a class="alt-text-link alt-anim" style="--anim-delay:.78s" href="../index.html#modules">登录后核验标的 <span aria-hidden="true">↗</span></a>
+              </div>
+              <figure class="alt-media alt-evidence-media alt-flipdeck-media alt-anim" style="--anim-delay:1.4s;--anim-dy:34px">
+                <span class="alt-flipdeck-ghost" aria-hidden="true">02</span>
+                <div class="alt-walkthrough-frame">
+                  <span class="alt-flip-badge">视图 2 · 机器人核验</span>
+                  <picture>
+                    <source media="(max-width: 720px)" srcset="marketing/execution-boundary-walkthrough-800.webp">
+                    <img src="marketing/execution-boundary-walkthrough-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="真实机器人页面，展示标的周期、数据状态、K 线信号区与策略边界">
+                  </picture>
+                  <ol class="alt-walkthrough-notes" aria-label="机器人核验页面重点标注">
+                    <li class="alt-pin alt-pin-cycle"><span>01</span><b>标的与周期</b></li>
+                    <li class="alt-pin alt-pin-status"><span>02</span><b>数据完整度</b></li>
+                    <li class="alt-pin alt-pin-evidence"><span>03</span><b>K 线与信号证据</b></li>
+                    <li class="alt-pin alt-pin-boundary"><span>04</span><b>策略边界</b></li>
+                  </ol>
+                </div>
+                <figcaption>真实页面截图 · AI 仅做匿名化与聚焦处理 · 编号为网页标注 · 画面非实时</figcaption>
+              </figure>
+            </div>
+          </div>
+
+        </div>
+        <button class="alt-showcase-arrow alt-showcase-next alt-autodeck-next" type="button" data-alt-autodeck-next aria-label="下一个视图"><span aria-hidden="true">›</span></button>
+      </div>
+      <div class="alt-autodeck-dots" role="tablist" aria-label="切换功能视图" data-alt-autodeck-dots></div>
+    </section>
+
+    <section id="strategy-research" class="alt-section alt-validation-section" aria-labelledby="strategy-research-title">
+      <div class="alt-shell">
+        <div class="alt-validation-heading">
+          <div class="alt-evidence-copy">
+            <p class="alt-section-label">策略中心 × 回测中心</p>
+            <h2 id="strategy-research-title" class="alt-title-lines"><span>先把规则写清</span><span>再让历史回答</span></h2>
+            <p>策略选股组合条件，把研究想法落成确定性规则；回测中心在同一日期窗口比较信号模式、周期与同期持有。每一次买卖都能回到图表核验。</p>
+          </div>
+          <ol class="alt-validation-path" aria-label="策略验证路径">
+            <li><span>01</span><strong>形成条件</strong><small>自然语言转确定性筛选</small></li>
+            <li><span>02</span><strong>同窗回放</strong><small>策略、周期与持有基准同台</small></li>
+            <li><span>03</span><strong>逐笔复盘</strong><small>查看每种方式的买卖记录</small></li>
+          </ol>
+        </div>
+
+        <div class="alt-validation-stage">
+          <figure class="alt-media alt-product-visual alt-validation-backtest">
+            <picture>
+              <source media="(max-width: 720px)" srcset="marketing/backtest-period-compare-800.webp">
+              <img src="marketing/backtest-period-compare-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="真实回测中心页面，同窗展示正式与候选信号、不同周期、同期持有、收益曲线和完整交易统计">
+            </picture>
+            <figcaption>回测中心实机截图 · 同一起止日期 · 策略与同期持有统一换算 · 收益不作承诺</figcaption>
+          </figure>
+          <figure class="alt-media alt-product-visual alt-validation-screener">
+            <div class="alt-walkthrough-frame">
+              <picture>
+                <source media="(max-width: 720px)" srcset="marketing/strategy-research-walkthrough-800.webp">
+                <img src="marketing/strategy-research-walkthrough-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="真实策略中心页面，展示自然语言描述、确定性条件与执行进度">
+              </picture>
+              <ol class="alt-walkthrough-notes" aria-label="策略中心页面重点标注">
+                <li class="alt-pin alt-pin-strategy-query"><span>01</span><b>描述研究条件</b></li>
+                <li class="alt-pin alt-pin-strategy-rules"><span>02</span><b>回填确定性规则</b></li>
+                <li class="alt-pin alt-pin-strategy-run"><span>03</span><b>执行并看进度</b></li>
+              </ol>
+            </div>
+            <figcaption>策略中心实机截图 · 缺失数据明确标出 · 不虚构候选</figcaption>
+          </figure>
+        </div>
+
+        <div class="alt-validation-actions">
+          <p><strong>当前边界</strong> 策略中心负责当前候选池筛选，回测中心按已实现的综合信号模式验证。任意筛选条件的历史联动仍在规划中。</p>
+          <div>
+            <a class="alt-button alt-button-primary" href="../index.html#modules">打开策略中心</a>
+            <a class="alt-button alt-button-outline" href="../index.html#modules">查看同窗回测</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai-assistant" class="alt-section alt-ai-section" aria-labelledby="ai-assistant-title">
+      <div class="alt-shell">
+        <div class="alt-ai-heading">
+          <div class="alt-evidence-copy">
+            <p class="alt-section-label">AI 助手与研判</p>
+            <h2 id="ai-assistant-title" class="alt-title-lines"><span>先把事实找齐</span><span>再让 AI 开口</span></h2>
+            <p>它读取候选、评分、板块、持仓与已审核来源。未扫描的数据不会被当成零，结论会带着覆盖度和风险一起出现。</p>
+            <div class="alt-ai-actions">
+              <a class="alt-button alt-button-primary" href="../index.html#modules">打开 AI 研判</a>
+              <a class="alt-button alt-button-outline" href="../index.html#modules">查看资讯中心</a>
+            </div>
+          </div>
+          <dl class="alt-ai-proof">
+            <div><dt>问法</dt><dd>用自然语言描述要核验的问题</dd></div>
+            <div><dt>证据</dt><dd>显示覆盖度、数据源与外部来源</dd></div>
+            <div><dt>续接</dt><dd>后台任务跨页面继续，刷新后可恢复</dd></div>
+            <div><dt>边界</dt><dd>只读解释，返回机器人逐项复核</dd></div>
+          </dl>
+        </div>
+
+        <div class="alt-ai-stage">
+          <figure class="alt-media alt-product-visual alt-ai-analysis-visual">
+            <picture>
+              <source media="(max-width: 720px)" srcset="marketing/ai-grounded-analysis-800.webp">
+              <img src="marketing/ai-grounded-analysis-1600.webp" width="1600" height="470" loading="lazy" decoding="async" alt="真实 AI 研判页面，展示基于候选、评分、持仓和板块事实的提问与扫描入口">
+            </picture>
+            <figcaption>AI 研判实机截图 · 先扫描系统事实 · 只读分析</figcaption>
+          </figure>
+          <figure class="alt-media alt-product-visual alt-ai-assistant-visual">
+            <picture>
+              <source media="(max-width: 720px)" srcset="marketing/assistant-evidence-640.webp">
+              <img src="marketing/assistant-evidence-1280.webp" width="1280" height="720" loading="lazy" decoding="async" alt="真实随页系统助手，展示当前股票、评分事实、风险、来源和返回图表入口">
+            </picture>
+            <figcaption>随页助手实机截图 · 任务可续接 · 来源可回看</figcaption>
+          </figure>
+        </div>
+
+        <aside class="alt-ai-roadmap" aria-label="资讯与教学建设计划">
+          <span>正在建设</span>
+          <p><strong>资讯中心与系统教程</strong> 后续会把功能用法、案例复盘和公开教学内容接入同一条研究链，当前不把规划包装成已完成能力。</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 效果B:单图从上滑下展示(Slide-down)。整段进入视口时,文字先分级跳出(大标题→红色关键词→小字),然后单张截图从上方滑落到位。只有一张图,不做翻页;由 IntersectionObserver 触发一次。 -->
+    <section id="research-loop" class="alt-section alt-ledger-section alt-loop-section" data-alt-slidedown aria-labelledby="research-loop-title">
+      <div class="alt-shell alt-evidence-row">
+        <div class="alt-evidence-copy">
+          <p class="alt-section-label alt-anim" style="--anim-delay:.05s">研究闭环</p>
+          <h2 id="research-loop-title" class="alt-flipdeck-title">
+            <span class="alt-anim" style="--anim-delay:.16s;--anim-dy:34px">研究从事实开始</span>
+            <em class="alt-key alt-anim" style="--anim-delay:.42s;--anim-s:1.18">复盘让判断继续</em>
+          </h2>
+          <p class="alt-anim" style="--anim-delay:.64s">自选、模拟、回测、质量与数据源检查，让下一次研究接着上一次继续。</p>
+          <a class="alt-text-link alt-anim" style="--anim-delay:.78s" href="../index.html#modules">登录后回到研究闭环 <span aria-hidden="true">↗</span></a>
+        </div>
+        <figure class="alt-media alt-evidence-media alt-slidedown-media">
+          <div class="alt-walkthrough-frame">
+            <picture>
+              <source media="(max-width: 720px)" srcset="marketing/research-loop-walkthrough-800.webp">
+              <img src="marketing/research-loop-walkthrough-1600.webp" width="1600" height="900" loading="lazy" decoding="async" alt="真实市场工作台页面，展示历史快照、人工核验与板块资料">
+            </picture>
+            <ol class="alt-walkthrough-notes" aria-label="研究闭环页面重点标注">
+              <li class="alt-pin alt-pin-loop-history"><span>01</span><b>历史事实</b></li>
+              <li class="alt-pin alt-pin-loop-review"><span>02</span><b>人工核验</b></li>
+              <li class="alt-pin alt-pin-loop-sector"><span>03</span><b>板块快照</b></li>
+              <li class="alt-pin alt-pin-loop-robot"><span>04</span><b>回到机器人</b></li>
+            </ol>
+          </div>
+          <figcaption>真实页面截图 · AI 仅做匿名化与聚焦处理 · 只读研究闭环 · 不代表自动交易</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="alt-closing" aria-labelledby="closing-title">
+      <div class="alt-shell">
+        <div class="alt-section-intro alt-section-intro-narrow">
+          <p class="alt-section-label">从今天开始</p>
+          <h2 id="closing-title" class="alt-title-lines"><span>拿一只看不懂的股票</span><span>先做一次研究体检</span></h2>
+        </div>
+        <div class="alt-now-next-later">
+          <div><strong>NOW</strong><p>信号跟随已开放；半自动研究可用。</p></div>
+          <div><strong>NEXT</strong><p>继续完善证据、风险与研究闭环。</p></div>
+          <div><strong>LATER</strong><p>自动执行仍在规划，待授权与验收完成。</p></div>
+        </div>
+        <div class="alt-closing-actions">
+          <a class="alt-button alt-button-primary alt-button-large" href="../index.html#modules">开始股票体检</a>
+          <a class="alt-button alt-button-outline alt-button-large" href="../index.html#modules">注册账号</a>
+        </div>
+        <p class="alt-disclosure">页面中的 K 线动效为固定种子合成序列。指标、机器人、策略、回测与 AI 产品图均来自本地实机页面；部分图片经 AI 做匿名化与聚焦处理，编号与动线由网页叠加，不代表新增功能。页面不构成投资建议。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="alt-footer" aria-label="产品页脚">
+    <div class="alt-shell alt-footer-main">
+      <div class="alt-footer-brand">
+        <a href="./" aria-label="Cherry Cake Quant Robot 产品首页">
+          <strong>Cherry Cake Quant Robot</strong>
+          <span>CCQR 量化研究系统</span>
+        </a>
+        <p>让指标、信号、风险、板块与复盘进入同一条可核验研究链</p>
+      </div>
+      <nav class="alt-footer-column" aria-label="产品入口">
+        <h2>产品</h2>
+        <a href="#four-layer">指标体系</a>
+        <a href="#robot-modes">机器人模式</a>
+        <a href="#market-discovery">市场发现</a>
+      </nav>
+      <nav class="alt-footer-column" aria-label="研究入口">
+        <h2>研究</h2>
+        <a href="#controlled-flow">受控流程</a>
+        <a href="#strategy-research">策略与回测</a>
+        <a href="#ai-assistant">AI 助手</a>
+        <a href="#research-loop">研究闭环</a>
+      </nav>
+      <nav class="alt-footer-column" aria-label="帮助入口">
+        <h2>帮助</h2>
+        <a href="../index.html#modules">登录系统</a>
+        <a href="../index.html#modules">注册账号</a>
+        <a href="mailto:923404110@qq.com">联系与反馈</a>
+      </nav>
+    </div>
+    <div class="alt-shell alt-footer-bottom">
+      <span>© 2026 Cherry Cake Quant Robot</span>
+      <span>只读研究工具，不构成投资建议，不自动下单</span><a href="../index.html#architecture">免责声明</a><a href="../index.html#architecture">隐私政策</a>
+      <a href="mailto:923404110@qq.com">联系邮箱 923404110@qq.com</a>
+    </div>
+  </footer>
+</body>
+</html>
+
