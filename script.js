@@ -485,7 +485,8 @@ const modules = [...baseModules.filter((item) => !["information", "account"].inc
         ["指标家族协同", "多个指标家族分别提供方向、动量、资金和趋势信息，再汇总成分层信号强度。", "先确认各家族是否同向，再观察支持度和冲突项；公开展示只说明层级，不公开内部公式和配方。"],
         ["分层评分与信号确认", "系统先把证据整理为基础方向，再叠加跨周期共振和风险门槛，输出候选、确认或观望状态。", "把评分当作证据强度而不是胜率；先看信号状态，再结合人工过滤决定是否继续研究。"],
         ["手动确认门槛", "O 趋势方向、VWAP 位置和量能等开关用于人工收紧或放宽入场确认，不直接制造信号。", "顺势或突破时可开启对应门槛；震荡或回踩场景按需要关闭，查看通过/拦截原因。"],
-        ["多周期与关键价位", "对照分钟、小时、日线、周线和月线背景，并查看支撑、阻力、止损和数据来源。", "小周期用于观察动作，大周期用于确认背景；周期冲突时降低自动判断，回到风险计划。"],
+        ["多周期切换", "对照分钟、小时、日线、周线和月线背景，区分短周期动作与大周期方向。", "小周期用于观察动作，大周期用于确认背景；周期冲突时降低自动判断。"],
+        ["关键价位与风险计划", "查看支撑、阻力、止损和数据来源，把信号阅读落到风险边界。", "核对关键价位后再制定风险计划，不把评分直接当成执行价格。"],
         ["逐 K 信号快照", "每根已完成 K 线保留动作、评分、指标状态、风险和其他周期说明。", "点击快照行查看某个时点为什么出现该状态，为复盘和回测提供依据。"]
       ],
       qqq: [
@@ -704,12 +705,12 @@ function moduleCardTemplate(item) {
 function screenshotTemplate(file, title) {
   const safeFile = escapeHtml(file);
   return `
-    <figure class="screenshot-slot" data-screenshot-file="${safeFile}">
+    <figure class="screenshot-slot" data-screenshot-file="${safeFile}" aria-label="${escapeHtml(title)}截图预留位">
       <div class="screenshot-preview">
         <img src="screenshots/${safeFile}" alt="${escapeHtml(title)}：${safeFile}" loading="lazy" />
-        <div class="screenshot-placeholder"><strong>待补真实截图</strong><span>screenshots/${safeFile}</span></div>
+        <div class="screenshot-placeholder"><strong>截图</strong><span>待补真实界面</span></div>
       </div>
-      <figcaption class="screenshot-caption"><span>${safeFile}</span><small class="pending-label">待放图</small></figcaption>
+      <figcaption class="screenshot-caption"><span class="screenshot-label">截图</span><small class="pending-label">待放图</small></figcaption>
     </figure>`;
 }
 
@@ -747,14 +748,9 @@ function detailTemplate(item) {
       <div class="hierarchy-row">
         <div class="hierarchy-index">${String(index + 1).padStart(2, "0")}</div>
         <div class="hierarchy-copy"><span class="hierarchy-path">${escapeHtml(item.title)} / 页面区域</span><strong>${escapeHtml(node.name)}</strong><p>${escapeHtml(node.detail)}</p><small><b>使用：</b>${escapeHtml(node.usage)}</small></div>
-        <code class="hierarchy-shot">${escapeHtml(screenshot)}</code>
+        <span class="hierarchy-shot" data-screenshot-file="${escapeHtml(screenshot)}">截图</span>
       </div>`;
   }).join("");
-  const features = item.features.map((feature) => `
-    <div class="feature-row">
-      <div class="feature-row-top"><strong>${escapeHtml(feature.name)}</strong><em>${escapeHtml(feature.label)}</em></div>
-      <p>${escapeHtml(feature.detail)}</p>
-    </div>`).join("");
   const screenshots = item.screenshots.map((file) => screenshotTemplate(file, item.title)).join("");
   const tags = item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("");
   return `
@@ -764,13 +760,13 @@ function detailTemplate(item) {
         <span class="detail-route">${escapeHtml(item.route)}</span>
       </div>
       <div class="detail-meta"><span><b>功能：</b>${item.features.length} 个子功能</span><span><b>截图：</b>${item.screenshots.length} 个预留位</span><span><b>标签：</b>${tags}</span></div>
-      <section class="hierarchy-section"><div class="subsection-heading"><div><span class="section-kicker">NESTED PRODUCT MAP</span><h4>页面层级与最小功能</h4></div><p>模块 → 页面 / 标签 → 区域 → 子功能 → 截图</p></div><div class="hierarchy-list">${hierarchy}</div></section>
+      <section class="hierarchy-section"><div class="subsection-heading"><div><span class="section-kicker">ONE FEATURE / ONE SHOT</span><h4>一个功能，一个截图位</h4></div><p>模块 → 页面区域 → 功能说明 → 截图</p></div><div class="hierarchy-list">${hierarchy}</div></section>
       <div class="detail-columns">
         <div>
           <div class="detail-block"><h4>怎么用</h4><ol class="steps-list">${usage}</ol></div>
           <div class="detail-block"><h4>使用效果</h4><ul class="result-list">${results}</ul></div>
         </div>
-        <div class="detail-block"><h4>工程实现说明</h4><p class="implementation-copy">${escapeHtml(item.implementation || "页面将真实数据、状态和操作结果组织成可回看的研究界面。")}</p><div class="feature-list feature-list--compact">${features}</div></div>
+        <div class="detail-block"><h4>工程实现说明</h4><p class="implementation-copy">${escapeHtml(item.implementation || "页面将真实数据、状态和操作结果组织成可回看的研究界面。")}</p></div>
       </div>
       <div class="screenshots-section"><div class="screenshots-heading"><h4>界面截图</h4><p>把同名真实图片放进 screenshots/ 后自动替换占位。</p></div><div class="screenshot-grid">${screenshots}</div></div>
     </div>`;
