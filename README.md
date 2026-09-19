@@ -8,7 +8,7 @@
 
 ## 快速浏览
 
-- [打开手机可点击的静态展览页](https://yanshaocheng0910-hue.github.io/cherrycake-quant-research/)：GitHub Pages 发布的交互版，可按产品顺序浏览、搜索、筛选并跳到每个功能截图位。
+- [打开手机可点击的静态展览页](https://htmlpreview.github.io/?https://github.com/yanshaocheng0910-hue/cherrycake-quant-research/blob/main/index.html)：无需 GitHub Pages 设置即可运行，可按产品顺序浏览、搜索、筛选并跳到每个功能截图位。
 - [查看静态展览页源码](index.html)：在本地打开可按产品顺序浏览；在 GitHub 仓库里点击 HTML 文件只会看到源码，不能当网页运行。
 - [打开完整宣传页](promo/index.html)：保留产品宣传页的首屏、指标体系、机器人、市场发现、策略回测、AI 助手和研究闭环内容；备案期隐藏的宣传区块在此展示副本中恢复。
 - [逐入口功能说明](docs/功能说明.md)：每个入口都说明“是什么、页面层级、怎么用、使用效果、工程实现和截图位置”。
