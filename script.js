@@ -659,6 +659,7 @@ const modules = [...baseModules.filter((item) => !["information", "account"].inc
   });
 
 const moduleGrid = document.querySelector("#moduleGrid");
+const featuredGrid = document.querySelector("#featuredGrid");
 const detailContent = document.querySelector("#detailContent");
 const resultCount = document.querySelector("#resultCount");
 const emptyResults = document.querySelector("#emptyResults");
@@ -667,6 +668,8 @@ const expandAllButton = document.querySelector("#expandAll");
 let currentFilter = "all";
 let currentSearch = "";
 let selectedId = modules[0].id;
+
+const featuredModuleIds = ["workbench", "robot", "review", "plates", "screener", "ai", "backtest", "research"];
 
 function escapeHtml(value) {
   return String(value)
@@ -702,10 +705,41 @@ function moduleCardTemplate(item) {
     </article>`;
 }
 
-function screenshotTemplate(file, title) {
+function featuredCardTemplate(item, index) {
+  const file = item.screenshots[0] || "待补截图";
   const safeFile = escapeHtml(file);
   return `
-    <figure class="screenshot-slot" data-screenshot-file="${safeFile}" aria-label="${escapeHtml(title)}截图预留位">
+    <article class="featured-card${index === 0 ? " featured-card--hero" : ""}" data-featured-card="${escapeHtml(item.id)}">
+      <div class="featured-card-head">
+        <div><span class="module-number">${escapeHtml(item.number)} / 22</span><h3>${escapeHtml(item.title)}</h3></div>
+        <span class="category-label">${escapeHtml(item.categoryLabel)}</span>
+      </div>
+      <p>${escapeHtml(item.purpose)}</p>
+      <figure class="featured-shot" data-screenshot-file="${safeFile}" aria-label="${escapeHtml(item.title)}主界面截图预留位">
+        <img src="screenshots/${safeFile}" alt="${escapeHtml(item.title)}主界面截图" loading="lazy" />
+        <div class="screenshot-placeholder"><strong>截图</strong><span>待补真实界面</span></div>
+        <figcaption><span>主模块截图</span><small>进入详情看小功能</small></figcaption>
+      </figure>
+      <a class="featured-card-link" href="#detail" data-featured-module="${escapeHtml(item.id)}">查看 ${escapeHtml(item.title)} 的功能与截图 →</a>
+    </article>`;
+}
+
+function renderFeatured() {
+  if (!featuredGrid) return;
+  const featured = featuredModuleIds.map((id) => modules.find((item) => item.id === id)).filter(Boolean);
+  featuredGrid.innerHTML = featured.map(featuredCardTemplate).join("");
+  featuredGrid.querySelectorAll("[data-featured-module]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      selectModule(link.dataset.featuredModule, true);
+    });
+  });
+}
+
+function screenshotTemplate(file, title, shotId) {
+  const safeFile = escapeHtml(file);
+  return `
+    <figure class="screenshot-slot" id="${escapeHtml(shotId)}" data-screenshot-file="${safeFile}" aria-label="${escapeHtml(title)}截图预留位">
       <div class="screenshot-preview">
         <img src="screenshots/${safeFile}" alt="${escapeHtml(title)}：${safeFile}" loading="lazy" />
         <div class="screenshot-placeholder"><strong>截图</strong><span>待补真实界面</span></div>
@@ -743,15 +777,16 @@ function detailTemplate(item) {
   const usage = item.usage.map((step) => `<li>${escapeHtml(step)}</li>`).join("");
   const results = item.results.map((result) => `<li>${escapeHtml(result)}</li>`).join("");
   const hierarchy = (item.hierarchy || item.features.map((feature) => ({ name: feature.name, detail: feature.detail, usage: "按页面提示操作" }))).map((node, index) => {
-    const screenshot = item.screenshots[index] || item.screenshots[item.screenshots.length - 1] || "待补截图文件名";
+    const screenshot = item.screenshots[index] || item.screenshots[item.screenshots.length - 1] || "待补截图";
+    const shotId = `shot-${item.id}-${index + 1}`;
     return `
-      <div class="hierarchy-row">
+      <div class="hierarchy-row" id="feature-${escapeHtml(item.id)}-${index + 1}">
         <div class="hierarchy-index">${String(index + 1).padStart(2, "0")}</div>
         <div class="hierarchy-copy"><span class="hierarchy-path">${escapeHtml(item.title)} / 页面区域</span><strong>${escapeHtml(node.name)}</strong><p>${escapeHtml(node.detail)}</p><small><b>使用：</b>${escapeHtml(node.usage)}</small></div>
-        <span class="hierarchy-shot" data-screenshot-file="${escapeHtml(screenshot)}">截图</span>
+        <a class="hierarchy-shot" href="#${shotId}" data-screenshot-file="${escapeHtml(screenshot)}" aria-label="跳转到${escapeHtml(node.name)}截图">截图</a>
       </div>`;
   }).join("");
-  const screenshots = item.screenshots.map((file) => screenshotTemplate(file, item.title)).join("");
+  const screenshots = item.screenshots.map((file, index) => screenshotTemplate(file, item.title, `shot-${item.id}-${index + 1}`)).join("");
   const tags = item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("");
   return `
     <div class="detail-content">
@@ -773,8 +808,8 @@ function detailTemplate(item) {
 }
 
 function bindScreenshotFallbacks() {
-  detailContent.querySelectorAll(".screenshot-slot img").forEach((image) => {
-    const slot = image.closest(".screenshot-slot");
+  document.querySelectorAll(".screenshot-slot img, .featured-shot img").forEach((image) => {
+    const slot = image.closest(".screenshot-slot, .featured-shot");
     image.addEventListener("load", () => slot.classList.add("has-image"));
     image.addEventListener("error", () => slot.classList.remove("has-image"));
   });
@@ -812,3 +847,5 @@ expandAllButton.addEventListener("click", () => {
 });
 
 selectModule(selectedId);
+renderFeatured();
+bindScreenshotFallbacks();
