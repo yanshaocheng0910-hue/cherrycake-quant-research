@@ -11,3 +11,10 @@ Thumbs.db
 node_modules/
 dist/
 output/
+
+# Working drafts and visual QA are local; publish only reviewed Markdown and screenshots.
+docs/*.docx
+docs/*.pdf
+docs/_*/
+docs/_*.png
+docs/_*.ps1
