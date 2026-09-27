@@ -116,9 +116,11 @@
 
 ### 核心入口与功能分布
 
-以下截图先展示产品的主要使用场景；后文再按产品模块展开用途、功能关系、使用方式和技术落点。截图标题与正文入口保持对应，便于从界面直接进入说明。
+这里按 v10 稿的功能顺序展示 **18 张历史页面截图**：先进入研究，再读信号、发现候选、核对判断，最后追溯资讯来源。沿用已制作的概况截图，补齐原来只写在后文章节里的主要界面；后文仍逐模块说明用途、实现和边界。截图不是实时行情，其中涉及账户持仓的画面不在公开概览展示。
 
-这组界面沿着实际使用顺序展开：[产品首页](#overview-home)给出入口，[工作台](#chapter-09)承接盘前到盘后的日内观察，[指标机器人](#chapter-12)把单股信号拆成可读证据，[复盘中心](#chapter-10)把当天事实转成明日条件，[历史研究](docs/模块/选股与个股研究.md#history)保留当时的判断。它们是五个代表性画面，并不意味着产品只有五项功能；其余[市场发现](#chapter-14)、[资讯研报](#chapter-26)、[选股](#chapter-16)、[AI](#chapter-06)和[验证工具](#chapter-29)在后面的章节继续展开。
+快速跳转：[进入研究](#overview-home) · [读取信号](#overview-robot) · [发现候选](#overview-review) · [核对判断](#overview-history) · [追溯来源](#overview-radar)。
+
+### 进入研究｜从首页到日内工作台
 
 <a id="overview-home"></a>
 
@@ -126,7 +128,7 @@
 
 首页把行情、研究入口与验证路径放在同一视野：先从市场背景进入工作台，再按需要打开机器人、复盘和研究记录。[从工作台开始](#chapter-09) · [看四个产品域如何连接](#chapter-05)。
 
-![产品首页｜研究总览与入口 · 产品实拍](docs/new_screenshots/OVERVIEW-HOME.png)
+![产品首页｜研究总览与入口 · 历史产品截图](docs/new_screenshots/OVERVIEW-HOME.png)
 
 <a id="overview-workbench"></a>
 
@@ -134,7 +136,9 @@
 
 工作台不是单一行情表，而是按[盘前](#workbench-pre-check)、[竞价](#workbench-auction-times)、[盘中](#workbench-intraday-market)和[盘后](#workbench-after-facts)组织一天的观察；各阶段可继续下钻板块、个股和复盘。
 
-![工作台｜日内研究总览 · 产品实拍](docs/new_screenshots/OVERVIEW-WORKBENCH.png)
+![工作台｜日内研究总览 · 历史产品截图](docs/new_screenshots/OVERVIEW-WORKBENCH.png)
+
+### 读取信号｜图表、明细与独立标的
 
 <a id="overview-robot"></a>
 
@@ -142,7 +146,21 @@
 
 同一标的可在不同周期检查趋势、动量、信号阶段、关键价位和风险边界。[指标引擎说明](#chapter-07)解释证据怎样进入页面，[机器人功能](#chapter-12)展示简化版与专业版怎样阅读。
 
-![指标机器人｜指标图表与信号 · 产品实拍](screenshots/02-robot-professional.png)
+![指标机器人｜指标图表与信号 · 历史产品截图](docs/new_screenshots/OVERVIEW-ROBOT.png)
+
+#### 指标机器人｜信号明细
+
+图表之外，再核对当前动作、历史快照和原因；阅读方式见[指标机器人](#chapter-12)。
+
+![指标机器人｜信号明细 · 历史产品截图](promo/marketing/v10-overview/image4.png)
+
+#### QQQ 量化｜独立标的判断
+
+把方向、门槛、风险和数据新鲜度放在同一视野，不把观察状态当作交易指令；详见[QQQ 量化决策台](#chapter-13)。
+
+![QQQ 量化｜独立标的判断 · 历史产品截图](promo/marketing/v10-overview/image5.png)
+
+### 发现候选｜复盘、板块与选股
 
 <a id="overview-review"></a>
 
@@ -150,7 +168,27 @@
 
 复盘中心从市场宽度、涨停结构和情绪变化出发，逐页追到样本与统计口径，再形成[明日验证](#review-tomorrow)并在下一交易日[核验竞价](#review-auction)。[查看十个分页](#chapter-10)。
 
-![A 股复盘中心｜复盘看板 · 产品实拍](docs/new_screenshots/OVERVIEW-REVIEW.png)
+![A 股复盘中心｜复盘看板 · 历史产品截图](docs/new_screenshots/OVERVIEW-REVIEW.png)
+
+#### 板块中心｜资金与成分入口
+
+先看行业或概念的资金和趋势，再打开成分股核对；详见[板块中心](#chapter-14)。
+
+![板块中心｜资金与成分入口 · 历史产品截图](promo/marketing/v10-overview/image7.png)
+
+#### 排行榜｜缩小候选范围
+
+涨幅、成交、市场范围和机器人状态用于发现候选，排名本身不作结论；详见[排行榜](#chapter-15)。
+
+![排行榜｜候选排序 · 历史产品截图](promo/marketing/v10-overview/image8.png)
+
+#### 智能选股｜把想法变成条件
+
+先解析并确认口语条件，再交给确定性扫描；详见[智能选股](#chapter-16)。
+
+![智能选股｜条件解析与运行 · 历史产品截图](promo/marketing/v10-overview/image9.png)
+
+### 核对判断｜历史、AI 与估值
 
 <a id="overview-history"></a>
 
@@ -158,7 +196,59 @@
 
 研究记录保存当时的问题、标的、证据、模型路径和失败状态，方便事后回看，而不要求用户重新生成一次回答。它与[个股研究](#chapter-19)、[回测](#chapter-29)和[信号质量](#chapter-30)组成验证后的回看入口。
 
-![历史研究｜研究记录 · 产品实拍](docs/new_screenshots/OVERVIEW-HISTORY.png)
+![历史研究｜研究记录 · 历史产品截图](docs/new_screenshots/OVERVIEW-HISTORY.png)
+
+#### AI 模型与授权｜来源边界
+
+站长提供、自备 API 与本机 WorkBuddy 分别标示，授权和成本不混用；截图中的模型状态仅代表拍摄当时。详见[AI 助手](#chapter-06)。
+
+![AI 模型与授权｜来源边界 · 历史产品截图](promo/marketing/v10-overview/image11.png)
+
+#### 个股研究｜结论与反证
+
+业务、资金、技术与风险各有来源，结论仍能返回证据；详见[个股研究](#chapter-19)。
+
+![个股研究｜结论与反证 · 历史产品截图](promo/marketing/v10-overview/image13.png)
+
+#### PEG 估值｜先核数据再计算
+
+先核对价格、盈利预期和增长口径，字段不足时明确停在缺失状态；详见[PEG 估值](#chapter-20)。
+
+![PEG 估值｜输入与依据 · 历史产品截图](promo/marketing/v10-overview/image14.png)
+
+### 追溯来源｜资讯、产业数据与研报
+
+<a id="overview-radar"></a>
+
+#### 资讯雷达｜来源分类
+
+新闻、公告和事件按来源分流，并保留发布时间；详见[资讯雷达](#chapter-22)。
+
+![资讯雷达｜来源分类 · 历史产品截图](promo/marketing/v10-overview/image15.png)
+
+#### 产业信号｜沿时间看硬数据
+
+产业价格和供需变化作为研究线索，不直接生成买卖结论；详见[产业信号](#chapter-23)。
+
+![产业信号｜价格时间线 · 历史产品截图](promo/marketing/v10-overview/image16.png)
+
+#### 资讯榜单｜先发现再读原文
+
+关注度帮助缩小阅读范围，判断仍须回到原文；详见[资讯榜单](#chapter-24)。
+
+![资讯榜单｜热点与来源 · 历史产品截图](promo/marketing/v10-overview/image17.png)
+
+#### 实时动态｜采集时间与事件
+
+滚动条目同时显示来源和采集状态，旧信息不冒充刚发生；详见[实时动态](#chapter-25)。
+
+![实时动态｜事件与时效 · 历史产品截图](promo/marketing/v10-overview/image18.png)
+
+#### 研报中心｜观点回到材料
+
+标题、机构、发布日期与原文入口保留在同一研究链；详见[研报中心](#chapter-26)。
+
+![研报中心｜文献索引 · 历史产品截图](promo/marketing/v10-overview/image19.png)
 
 <a id="chapter-05"></a>
 
